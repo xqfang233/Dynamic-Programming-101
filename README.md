@@ -36,7 +36,7 @@ The solution could be divided into 2 steps:
 
 the java version 
 
-```
+```java 
 public class Hanoi {
     public static void h(Int n, String src, String temp, String des) {
         if(n==1) {
@@ -57,18 +57,16 @@ time complexity: O(2^n - 1) for moving n disks
 + What is Backtracking?
 
 As summarized in [this video](https://www.youtube.com/watch?v=Zq4upTEaQyM), backtracking is to **make choices** under some **constraints** to reach a specific **goal**.
-Let's take the [word search](https://leetcode.com/problems/word-search/) problem as an example. In this problem, we are asked to traverse a board of character grids to find out if a specific word string exists in this board. Below is an example given:
+Let's take the [word search](https://leetcode.com/problems/word-search/) problem as an example. In this problem, we are asked to traverse a board of character grids to find out if a specific word string exists in this board. Below is an example given and the problem description:
 ![image](https://user-images.githubusercontent.com/81652429/120573101-0f846d80-c3eb-11eb-9b65-96b029cb1c53.png)
 ```
 Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
 Output: true
 ```
-and the problem description:
 ```
 Given an m x n grid of characters board and a string word, return true if word exists in the grid.
 
 The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
-
 ```
 Let's see what choices, constraints and goal are in this problem.
 
@@ -84,7 +82,7 @@ We can apply the following steps to solve a single cell:
 5. If none of the adjacent cell satisfies the above requirements, we are done with this cell, and we need to go back, to "backtracking" the cell that leads to the cell we are currently at, and change to another direction for our search.
 
 Here is the python solution for this problem:
-```
+```python
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         if len(board[0])==0 or len(board)==0:
