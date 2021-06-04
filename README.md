@@ -147,11 +147,13 @@ visited[x][y] = False
 ```
 The above code segment could be abstracted as:
 
+```
 make the choice
 ############# start recursion ##############
 recursion part
 ############# end recursion ##############
 revoke the choice
+```
 
 This is how backtracking works in this solution. Here is a simple, general template for backtracking in python:
 ```python
