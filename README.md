@@ -194,6 +194,51 @@ Only the filled cells need to be validated according to the mentioned rules.
 
 output: True
 
+```python
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        
+        def backtrack(board, row, col):
+            # if reach the last col of current row, go to the next row
+            if col==9:
+                return backtrack(board, row+1,0)
+            # termination condition: if finish iterating the last row
+            if row==9:
+                return True
+            
+            for i in range(row, 9):
+                for j in range(col, 9):
+                    if board[i][j] != '.':
+                        return backtrack(board, i, j+1)
+                    for dig in range(1,10):
+                        if not Valid(board, i, j, dig):
+                            continue
+                        board[i][j] = str(dig)
+                        # if find a solution, end here and return
+                        if backtrack(board, i, j+1):
+                            return True
+                        # else, revoke the choice
+                        board[i][j] = '.'  
+                    return False
+            return False
+        
+        def Valid(board, r, c, dig):
+            ch = str(dig)
+            for i in range(9):
+                if board[r][i]==ch:
+                    return False
+                if board[i][c]==ch:
+                    return False
+                if board[(r//3)*3 + i//3][(c//3)*3 + i%3]==ch:
+                    return False
+            return True
+        
+        backtrack(board, 0, 0)
+```
+
 
 
 
