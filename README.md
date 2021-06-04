@@ -130,8 +130,51 @@ This solution applied DFS. Of course we can use BFS for this problem. BFS has th
 
 The backtracking videos on this channel: [Back to Back SWE](https://www.youtube.com/channel/UCmJz2DV1a3yfgrR7GqRtUUA) are great references.
 
+### the template of backtracking
+Let's focus on this code segment from the dfs function above in the python code:
+
+```python
+visited[x][y] = True
+############# start recursion ##############
+for i in range(4):
+  nx = x+row[i]
+  ny = y+col[i]
+  if nx>=0 and nx<m and ny>=0 and ny<n and not visited[nx][ny] and dfs(nx,ny,idx+1):
+  return True
+############# end recursion ##############
+visited[x][y] = False
+
+```
+The above code segment could be abstracted as:
+
+make the choice
+############# start recursion ##############
+recursion part
+############# end recursion ##############
+revoke the choice
+
+This is how backtracking works in this solution. Here is a simple, general template for backtracking in python:
+```python
+# some container to store the result
+result = []
+
+def backtrack(path, choice):
+    if (termination condition is met):
+        result.add(path) # path is consisted of all the choices you made until then
+        return
+
+    for choice in [choices]:
+        # make a choice
+        backtrack(path, [choices]) # recursively call the backtrack function
+        # revoke the choice
+
+```
+
+*the above template refers to [this article written in Chinese](https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484709&idx=1&sn=1c24a5c41a5a255000532e83f38f2ce4&chksm=9bd7fb2daca0723be888b30345e2c5e64649fc31a00b05c27a0843f349e2dd9363338d0dac61&scene=21#wechat_redirect)*
+
+
 ### sudoku
-Another problem [Valid Soduku](https://leetcode.com/problems/valid-sudoku/) is very similar to the example above. 
+Another problem [Valid Soduku](https://leetcode.com/problems/valid-sudoku/) can be solved with the techniques mentioned above. 
 
 problem description:
 ```
